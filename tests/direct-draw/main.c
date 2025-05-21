@@ -38,10 +38,10 @@ ZTEST(terminal_display, test_hue_circle)
         .frame_incomplete = false,
     };
 
-    for (double t = 0.0; t < 10.0; t += 0.01)
+    for (double theta = 0.0; theta <= 10 * 3.1415; theta += 0.1)
     {
         uint8_t r, g, b;
-        double h = fmod(t * 100, 360.0);
+        double h = fmod(theta * 100, 360.0);
         double s = 1.0;
         double v = 1.0;
         hsv_to_rgb(h, s, v, &r, &g, &b);
@@ -53,8 +53,8 @@ ZTEST(terminal_display, test_hue_circle)
             buf[i * 3 + 2] = b;
         }
 
-        double x = (sin(t) + 1.0) * ((caps.x_resolution - 1) / 2.0);
-        double y = (cos(t) + 1.0) * ((caps.y_resolution - 1) / 2.0);
+        double x = (sin(theta) + 1.0) * ((caps.x_resolution - 1) / 2.5);
+        double y = (cos(theta) + 1.0) * ((caps.y_resolution - 1) / 2.5);
         LOG_INF("Writing at %d, %d", (uint16_t)x, (uint16_t)y);
         ret = display_write(dev, (uint16_t)x, (uint16_t)y, &desc, buf);
         zassert_equal(ret, 0);

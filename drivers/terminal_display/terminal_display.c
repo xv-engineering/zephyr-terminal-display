@@ -86,8 +86,7 @@ static int terminal_display_write(const struct device *dev, const uint16_t x,
 
     // Not strictly a requirement, but simplifies the logic below.
     // Since this is mostly a demo, leaving this for now.
-    // TODO: actually deal with this or confirm it's not an issue
-    // __ASSERT_NO_MSG(desc->pitch == 0);
+    __ASSERT_NO_MSG(desc->pitch == desc->width);
 
     const struct terminal_display_config *config = dev->config;
     struct terminal_display_data *data = dev->data;
