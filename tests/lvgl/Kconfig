@@ -1,0 +1,5 @@
+module = TEST
+module-str = test
+source "subsys/logging/Kconfig.template.log_config"
+
+source "Kconfig.zephyr"
