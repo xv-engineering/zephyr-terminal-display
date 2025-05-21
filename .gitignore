@@ -1,0 +1,4 @@
+build*/
+.venv/
+.DS_Store
+**/twister-out*/

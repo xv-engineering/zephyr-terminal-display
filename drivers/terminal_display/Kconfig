@@ -1,0 +1,31 @@
+# Copyright (c) 2025 Noah Luskey <noah@xv.engineering>
+#
+# SPDX-License-Identifier: MIT
+
+config TERMINAL_DISPLAY
+    bool "Terminal Display Driver"
+    default y
+    depends on DT_HAS_XV_TERMINAL_DISPLAY_ENABLED
+    # TODO: probably depends on some sort of console/terminal being enabled
+    help
+        Enable the terminal display driver.
+
+if TERMINAL_DISPLAY
+
+config TERMINAL_DISPLAY_INIT_PRIORITY
+    int "Terminal Display Initialization Priority"
+    default 50
+    help
+        The priority of the Terminal Display initialization.
+
+config TERMINAL_DISPLAY_THREAD_PRIORITY
+    int "Terminal Display Thread Priority"
+    default 4
+    help
+        The priority of the Terminal Display thread.
+
+module = TERMINAL_DISPLAY
+module-str = terminal_display
+source "subsys/logging/Kconfig.template.log_config"
+
+endif

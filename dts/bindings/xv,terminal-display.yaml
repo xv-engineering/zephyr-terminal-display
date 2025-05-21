@@ -1,0 +1,15 @@
+# Copyright (c) 2025 Noah Luskey <noah@xv.engineering>
+#
+# SPDX-License-Identifier: MIT
+description: Terminal Display Device
+
+compatible: "xv,terminal-display"
+
+include: display-controller.yaml
+
+properties:
+  terminal:
+    type: phandle
+    required: true
+    description: |
+      The terminal device to output to
