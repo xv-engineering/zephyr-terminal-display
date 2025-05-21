@@ -1,0 +1,16 @@
+manifest:
+  defaults:
+    remote: zephyr
+
+  remotes:
+    - name: zephyr
+      url-base: https://github.com/zephyrproject-rtos/
+  
+  projects:
+    - name: zephyr
+      remote: zephyr
+      import: true
+      revision: v4.1.0
+
+  self:
+    path: terminal-display
