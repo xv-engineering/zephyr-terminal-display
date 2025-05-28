@@ -1,0 +1,24 @@
+# Copyright (c) 2025 Noah Luskey <noah@xv.engineering>
+#
+# SPDX-License-Identifier: MIT
+module = SAMPLE
+module-str = sample
+source "subsys/logging/Kconfig.template.log_config"
+
+config PHYSICS_UPDATE_PERIOD_MS
+    int "Physics update period"
+    default 33
+    # Important: the lower range of 10 is due to some fixed point truncation
+    # in the particle physics. If a faster update period is desired, that
+    # must be improved first.
+    range 10 300
+
+config NUM_PARTICLES
+    int "Number of particles"
+    default 20
+    range 0 40
+    help
+        This is limited by the LVGL heap size. Be careful
+        if increasing this config and/or reducing the heap size.
+
+source "Kconfig.zephyr"

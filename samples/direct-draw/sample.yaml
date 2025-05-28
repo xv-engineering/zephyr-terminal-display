@@ -1,0 +1,10 @@
+sample:
+  description: Directly drawing to the display device
+  name: terminal-display direct draw sample
+tests:
+  terminal-display.samples.direct-draw:
+    build_only: true
+    platform_allow:
+      - native_sim/native/64
+      - nrf52840dk/nrf52840
+

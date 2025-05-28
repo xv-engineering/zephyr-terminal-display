@@ -1,0 +1,60 @@
+# This script assumes the Zephyr SDK is already installed
+# on the target machine. If it is not, `west sdk install`
+# will take care of that for you.
+name: Build and Test
+
+permissions:
+  contents: read
+  issues: read
+  checks: write
+  pull-requests: write
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: terminal-display
+      
+      - name: Setup and Activate Python Environment
+        run: |
+          python3 -m venv .venv
+          source .venv/bin/activate
+          echo PATH=$PATH >> $GITHUB_ENV
+          pip install west
+
+      - name: Initialize Project
+        run: |
+          west init -l terminal-display || true
+          west update
+
+      - name: Install Dependencies
+        run: |
+          west zephyr-export
+          west packages pip --install
+
+      - name: Run Twister
+        run: |
+          west twister -T terminal-display \
+            --platform native_sim/native/64 \
+            --platform nrf52840dk/nrf52840 \
+            --outdir twister-out
+      
+      - name: Test Report
+        uses: mikepenz/action-junit-report@v5
+        if: always()
+        with:
+          report_paths: |
+           twister-out/twister_suite_report.xml
+          include_passed: true
+          detailed_summary: true
+          require_tests: true
+          group_suite: true
+          check_name: |
+            Emulated Tests

@@ -1,21 +1,23 @@
 /*
  * Copyright (c) 2025 Noah Luskey <noah@xv.engineering>
  *
- * SPDX-License-Identifier: Apache-2.0
+ * SPDX-License-Identifier: MIT
  */
 
 / {
     chosen {
         zephyr,display = &terminal_display;
-        /delete-property/ zephyr,console;
     };
 
     terminal_display: terminal-display {
         status = "okay";
         compatible = "xv,terminal-display";
-        terminal = <&uart0>;
+        terminal = <&uart1>;
         width = <64>;
         height = <64>;
     };
 };
 
+&sdl_dc {
+    status = "disabled";
+};
