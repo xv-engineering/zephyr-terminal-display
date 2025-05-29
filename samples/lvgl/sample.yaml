@@ -1,0 +1,13 @@
+# Copyright (c) 2025 Noah Luskey <noah@xv.engineering>
+#
+# SPDX-License-Identifier: MIT
+sample:
+  description: Using LVGL to draw to the display device
+  name: terminal-display lvgl sample
+tests:
+  terminal-display.samples.lvgl:
+    build_only: true
+    platform_allow:
+      - native_sim/native/64
+      - nrf52840dk/nrf52840
+

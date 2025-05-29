@@ -42,7 +42,7 @@ manifest:
 
 ## Samples
 
-There are two samples/tests in the `tests` directory:
+There are two samples/tests in the `samples` directory:
 
 - `direct-draw`: a simple test that will draw a circle to the terminal
 - `lvgl`: a sample using the LVGL library to draw text to the terminal
