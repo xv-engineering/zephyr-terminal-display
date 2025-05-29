@@ -34,7 +34,7 @@ ZTEST(terminal_display, test_hue_circle)
         .buf_size = sizeof(buf),
         .width = 3,
         .height = 3,
-        .pitch = 0,
+        .pitch = 3,
         .frame_incomplete = false,
     };
 
