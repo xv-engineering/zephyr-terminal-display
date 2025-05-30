@@ -19,3 +19,7 @@
     };
 };
 
+/* Default UART baud rate is 115200. Set it to the maximum, 1M */
+&uart0 {
+    current-speed = <1000000>;
+};
